@@ -1,0 +1,61 @@
+﻿@model FolhaDePagamento.Models.Funcionario;
+
+@{
+    ViewData["Title"] = "Folha de Pagamento";
+}
+
+@{
+    double salarioBruto;
+    salarioBruto = Model.Salario + @Model.DescontoInss + @Model.DescontoIrrf - @Model.Vr - @Model.SalarioFamilia;
+}
+
+<h1>Folha de Pagamento</h1>
+
+<p>Funcionario: @Model.Nome</p>
+<p>Rg: @Model.Rg</p>
+<p>Cpf: @Model.Cpf</p>
+<p>Salário Bruto: R$ @salarioBruto</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Proventos</th>
+            <th>Descontos</th>
+            <th>Salário Líquido</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>010 Vale Refeição</td>
+            <td>+ @Model.Vr</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>053 Salario Familia</td>
+            <td>+ @Model.SalarioFamilia</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>100 INSS (11%)</td>
+            <td></td>
+            <td>- @Model.DescontoInss</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>107 INSS (7%)</td>
+            <td></td>
+            <td>- @Model.DescontoIrrf</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>R$ @Model.Salario</td>
+        </tr>
+
+    </tbody>
+</table>
